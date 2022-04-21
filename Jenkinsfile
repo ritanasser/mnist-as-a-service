@@ -2,20 +2,27 @@ pipeline {
   agent any
 
   environment {
-    REGISTRY_URL = ''
-    ECR_REGION = ''
-    K8S_NAMESPACE = ''
-    K8S_CLUSTER_NAME = ''
-    K8S_CLUSTER_REGION = ''
+    REGISTRY_URL = '352708296901.dkr.ecr.us-east-1.amazonaws.com'
+    ECR_REGION = 'us-east-1'
+    K8S_NAMESPACE = 'rita_namespace'
+    K8S_CLUSTER_NAME = 'devops-alfnar-k8s'
+    K8S_CLUSTER_REGION = 'eu-north-1'
+
   }
+
+
 
   stages {
     stage('MNIST Web Server - build'){
       when { branch "master" }
       steps {
           sh '''
-          echo building
-          '''
+        IMAGE="simple-webserver-rita:${BRANCH_NAME}_${BUILD_NUMBER}"
+                cd simple_webserver
+                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${DockerURL}
+                docker build -t ${IMAGE} .
+                docker tag ${IMAGE} ${DockerURL}/${IMAGE}
+                docker push ${DockerURL}/${IMAGE}         '''
       }
     }
 
