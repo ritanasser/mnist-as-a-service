@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    REGISTRY_URL = '3352708296901.dkr.ecr.us-east-1.amazonaws.com'
+    REGISTRY_URL = '3352708296901.dkr.ecr.us-east-1.amazonaws.com/ritawebserver'
     ECR_REGION = 'us-east-1'
     K8S_NAMESPACE = 'rita_namespace'
     K8S_CLUSTER_NAME = 'devops-alfnar-k8s'
