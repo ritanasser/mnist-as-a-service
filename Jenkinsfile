@@ -16,12 +16,13 @@ pipeline {
       when { branch "master" }
       steps {
           sh '''
-        IMAGE="ritawebserver:${BRANCH_NAME}_${BUILD_NUMBER}"
-                cd  webserver
-                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${REGISTRY_URL}
-                docker build -t ${IMAGE} .
-                docker tag ${IMAGE} ${DockerURL}/${IMAGE}
-                docker push ${DockerURL}/${IMAGE}         '''
+          IMAGE="ritawebsawver:0.0.${BUILD_NUMBER}"
+          cd ml_model
+          aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${REGISTRY_URL}
+          docker build -t ${IMAGE} .
+          docker tag ${IMAGE} ${REGISTRY_URL}/${IMAGE}
+          docker push ${REGISTRY_URL}/${IMAGE}
+
       }
     }
 
