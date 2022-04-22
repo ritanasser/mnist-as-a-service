@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    REGISTRY_URL = '352708296901.dkr.ecr.eu-north-1.amazonaws.com/mnist-webserver'
+    REGISTRY_URL = '352708296901.dkr.ecr.us-east-1.amazonaws.com/ritawebserver'
     ECR_REGION = 'us-east-1'
     K8S_NAMESPACE = 'rita_namespace'
     K8S_CLUSTER_NAME = 'devops-alfnar-k8s'
@@ -17,8 +17,8 @@ pipeline {
       when { branch "master" }
       steps {
           sh '''
-        IMAGE="mnist-webserver:${BRANCH_NAME}_${BUILD_NUMBER}"
-                cd  ml_model
+        IMAGE="ritawebserver:0.0.${BRANCH_NAME}_${BUILD_NUMBER}"
+                cd  webserver
                 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${DockerURL}
                 docker build -t ${IMAGE} .
                 docker tag ${IMAGE} ${DockerURL}/${IMAGE}
