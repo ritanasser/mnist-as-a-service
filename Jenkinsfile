@@ -17,7 +17,7 @@ pipeline {
       when { branch "master" }
       steps {
           sh '''
-        IMAGE="ritawebserver:0.0.${BRANCH_NAME}_${BUILD_NUMBER}"
+        IMAGE="ritawebserver:${BRANCH_NAME}_${BUILD_NUMBER}"
                 cd  webserver
                 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${DockerURL}
                 docker build -t ${IMAGE} .
