@@ -11,7 +11,7 @@ pipeline {
   }
 
   stages {
-    stage('MNIST Web Server - build'){
+    stage('MNIST Predictor - build'){
       when { branch "master" }
       steps {
           sh '''
@@ -26,7 +26,7 @@ pipeline {
       }
     }
 
-    stage('MNIST Web Server - deploy'){
+    stage('MNIST Predictor - deploy'){
         when { branch "master" }
         steps {
             sh '''
@@ -36,12 +36,12 @@ pipeline {
     }
 
 
-    stage('MNIST Predictor - build'){
+    stage('MNIST Webserver - build'){
         when { branch "master" }
         steps {
             sh '''
             IMAGE="mnist-predictor:0.0.${BUILD_NUMBER}"
-            cd ml_model
+            cd webserver
             aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${REGISTRY_URL}
             docker build -t ${IMAGE} .
             docker tag ${IMAGE} ${REGISTRY_URL}/${IMAGE}
@@ -50,7 +50,7 @@ pipeline {
         }
     }
 
-    stage('MNIST Predictor - deploy'){
+    stage('MNIST Webserver - deploy'){
         when { branch "master" }
         steps {
             sh '''
