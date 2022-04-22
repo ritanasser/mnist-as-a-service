@@ -18,7 +18,7 @@ pipeline {
           sh '''
         IMAGE="ritawebserver:${BRANCH_NAME}_${BUILD_NUMBER}"
                 cd  webserver
-                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${DockerURL}
+                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${REGISTRY_URL}
                 docker build -t ${IMAGE} .
                 docker tag ${IMAGE} ${DockerURL}/${IMAGE}
                 docker push ${DockerURL}/${IMAGE}         '''
