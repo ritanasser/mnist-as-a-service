@@ -30,6 +30,8 @@ pipeline {
         steps {
             sh '''
             echo deploying
+             kubectl create namespace rita-namespace
+
             '''
         }
     }
