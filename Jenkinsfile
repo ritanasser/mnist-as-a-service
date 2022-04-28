@@ -10,7 +10,7 @@ pipeline {
 
   }
   stages {
-    stage('MNIST Predictor - build'){
+    stage('MNIST Webserver  - build'){
       when { branch "master" }
       steps {
           sh '''
@@ -25,19 +25,20 @@ pipeline {
       }
     }
 
-    stage('MNIST Predictor - deploy'){
+    stage('MNIST Webserver  - deploy'){
         when { branch "master" }
         steps {
             sh '''
             echo deploying
             cd infra/k8s
+            kubectl apply -f mnist-webserver.yaml -n $K8S_NAMESPACE
 
             '''
         }
     }
 
 
-    stage('MNIST Webserver - build'){
+    stage('MNIST Predictor - build'){
         when { branch "master" }
         steps {
             sh '''
@@ -52,7 +53,7 @@ pipeline {
         }
     }
 
-    stage('MNIST Webserver - deploy'){
+    stage('MNIST Predictor - deploy'){
         when { branch "master" }
         steps {
             sh '''
