@@ -30,7 +30,6 @@ pipeline {
         steps {
             sh '''
             echo deploying
-             kubectl create namespace rita-namespace
              kubectl apply -f mnist-predictor.yaml -n $K8S_NAMESPACE
 
 
