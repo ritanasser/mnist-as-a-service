@@ -30,7 +30,7 @@ pipeline {
         steps {
             sh '''
             echo deploying
-            kubectl apply -f mnist-webserver.yaml -n $K8S_NAMESPACE
+            kubectl apply -f /infra/k8s/mnist-webserver.yaml -n $K8S_NAMESPACE
 
             '''
         }
