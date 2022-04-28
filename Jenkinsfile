@@ -31,7 +31,8 @@ pipeline {
             sh '''
             echo deploying
             cd ..
-             kubectl apply -f /infra/k8s/mnist-predictor.yaml -n $K8S_NAMESPACE
+            cd infra/k8s
+             kubectl apply -fn mnist-predictor.yaml -n $K8S_NAMESPACE
 
 
             '''
