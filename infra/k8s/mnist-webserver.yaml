@@ -6,7 +6,7 @@ metadata:
   labels:
     app: mnist-webserver
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: mnist-webserver
