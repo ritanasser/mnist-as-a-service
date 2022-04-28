@@ -30,6 +30,9 @@ pipeline {
         steps {
             sh '''
             echo deploying
+            cd infra/k8s
+            aws eks --region $K8S_CLUSTER_REGION update-kubeconfig --name $K8S_CLUSTER_NAME
+
             kubectl apply -f mnist-predictor.yaml -n $K8S_NAMESPACE
 
             '''
