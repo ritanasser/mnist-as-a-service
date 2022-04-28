@@ -31,13 +31,13 @@ pipeline {
             sh '''
             echo deploying
             cd infra/k8s
-            IMG_NAME=mnist-webserver:0.0.${BUILD_NUMBER}
-            sed -i "s/{{REGISTRY_URL}}/$REGISTRY_URL/g" mnist-webserver.yaml
-            sed -i "s/{{K8S_NAMESPACE}}/$K8S_NAMESPACE/g" mnist-webserver.yaml
-            sed -i "s/{{IMG_NAME}}/$IMG_NAME/g" mnist-webserver.yaml
+            IMG_NAME=mnist-predictor:0.0.${BUILD_NUMBER}
+            sed -i "s/{{REGISTRY_URL}}/$REGISTRY_URL/g" mnist-predictor.yaml
+            sed -i "s/{{K8S_NAMESPACE}}/$K8S_NAMESPACE/g" mnist-predictor.yaml
+            sed -i "s/{{IMG_NAME}}/$IMG_NAME/g" mnist-predictor.yaml
             aws eks --region $K8S_CLUSTER_REGION update-kubeconfig --name $K8S_CLUSTER_NAME
 
-            kubectl apply -f mnist-webserver.yaml -n $K8S_NAMESPACE
+            kubectl apply -f mnist-predictor.yaml -n $K8S_NAMESPACE
 
             '''
         }
