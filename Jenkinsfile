@@ -1,4 +1,4 @@
-ritapipeline {
+pipeline {
   agent any
 
   environment {
