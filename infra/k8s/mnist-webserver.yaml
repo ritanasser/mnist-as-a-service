@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Pod
+kind: Service
 metadata:
   name: mnist-webserver
   namespace: {{K8S_NAMESPACE}}
