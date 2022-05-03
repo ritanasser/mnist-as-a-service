@@ -1,6 +1,5 @@
 apiVersion: apps/v1
 kind: Deployment
-imagePullPolicy: Never
 metadata:
   name: mnist-webserver
   namespace: {{K8S_NAMESPACE}}
