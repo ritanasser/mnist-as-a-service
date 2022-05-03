@@ -21,6 +21,8 @@ pipeline {
           docker build -t ${IMAGE} .
           docker tag ${IMAGE} ${REGISTRY_URL}/${IMAGE}
           docker push ${REGISTRY_URL}/${IMAGE}
+          docker pull ${REGISTRY_URL}/${IMAGE}
+
           '''
 
       }
@@ -37,6 +39,7 @@ pipeline {
             sed -i "s/{{K8S_NAMESPACE}}/$K8S_NAMESPACE/g" mnist-webserver.yaml
             sed -i "s/{{IMG_NAME}}/$IMG_NAME/g" mnist-webserver.yaml
             aws eks --region $K8S_CLUSTER_REGION update-kubeconfig --name $K8S_CLUSTER_NAME
+
 
             kubectl apply -f mnist-webserver.yaml -n $K8S_NAMESPACE
 
@@ -55,6 +58,7 @@ pipeline {
             docker build -t ${IMAGE} .
             docker tag ${IMAGE} ${REGISTRY_URL}/${IMAGE}
             docker push ${REGISTRY_URL}/${IMAGE}
+            docker pull ${REGISTRY_URL}/${IMAGE}
 
             '''
         }
