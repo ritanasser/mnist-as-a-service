@@ -31,8 +31,6 @@ pipeline {
         steps {
             sh '''
             echo deploying
-            docker pull ${IMAGE} ${REGISTRY_URL}/${IMAGE}
-
             cd infra/k8s
             IMG_NAME=mnist-webserver:0.0.${BUILD_NUMBER}
             sed -i "s/{{REGISTRY_URL}}/$REGISTRY_URL/g" mnist-webserver.yaml
@@ -69,8 +67,6 @@ pipeline {
             sh '''
             cd infra/k8s
             IMG_NAME=mnist-predictor:0.0.${BUILD_NUMBER}
-            docker pull ${IMAGE} ${REGISTRY_URL}/${IMAGE}
-
 
             # replace registry url and image name placeholders in yaml
             sed -i "s/{{REGISTRY_URL}}/$REGISTRY_URL/g" mnist-predictor.yaml
