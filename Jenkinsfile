@@ -30,7 +30,6 @@ pipeline {
         when { branch "master" }
         steps {
             sh '''
-
             '''
         }
     }
