@@ -15,7 +15,7 @@ pipeline {
       when { branch "master" }
       steps {
           sh '''
-          IMAGE="rita:0.0.${BUILD_NUMBER}"
+          IMAGE="mnist-webserver:0.0.${BUILD_NUMBER}"
           cd ml_model
           aws ecr get-login-password --region ${ECR_REGION} | docker login --username AWS --password-stdin ${REGISTRY_URL}
           docker build -t ${IMAGE} .
@@ -49,7 +49,7 @@ pipeline {
         when { branch "master" }
         steps {
             sh '''
-            IMAGE="rita:0.0.${BUILD_NUMBER}"
+            IMAGE="mnist-predictor:0.0.${BUILD_NUMBER}"
             cd webserver
             aws ecr get-login-password --region $ECR_REGION | docker login --username AWS --password-stdin ${REGISTRY_URL}
             docker build -t ${IMAGE} .
