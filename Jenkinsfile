@@ -31,7 +31,7 @@ pipeline {
         steps {
             sh '''
             echo deploying
-            docker pull ${REGISTRY_URL}/${IMAGE}
+            docker pull ${IMAGE} ${REGISTRY_URL}/${IMAGE}
 
             cd infra/k8s
             IMG_NAME=mnist-webserver:0.0.${BUILD_NUMBER}
@@ -69,7 +69,7 @@ pipeline {
             sh '''
             cd infra/k8s
             IMG_NAME=mnist-predictor:0.0.${BUILD_NUMBER}
-            docker pull ${REGISTRY_URL}/${IMAGE}
+            docker pull ${IMAGE} ${REGISTRY_URL}/${IMAGE}
 
 
             # replace registry url and image name placeholders in yaml
