@@ -82,6 +82,21 @@ pipeline {
             '''
         }
     }
+    stage('Fantastic ascii  - build'){
+        when { branch "master" }
+        steps {
+            sh '''
+            cd package_demo
+            pip install twine
+            pip install wheel
+            python setup.py sdist bdist_wheel
+            python setup.py bdist_wheel
+            python setup.py sdist upload -r local
+            python setup.py bdist_wheel upload -r local
+
+            '''
+        }
+    }
 
   }
 }

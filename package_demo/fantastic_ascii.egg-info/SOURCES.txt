@@ -1,0 +1,7 @@
+setup.py
+fantastic_ascii/__init__.py
+fantastic_ascii/ascii.py
+fantastic_ascii.egg-info/PKG-INFO
+fantastic_ascii.egg-info/SOURCES.txt
+fantastic_ascii.egg-info/dependency_links.txt
+fantastic_ascii.egg-info/top_level.txt
