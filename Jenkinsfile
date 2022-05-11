@@ -87,7 +87,7 @@ pipeline {
         steps {
             sh '''
             cd package_demo
-            pip install twine
+
             pip install wheel
             python setup.py sdist bdist_wheel
             python setup.py bdist_wheel
