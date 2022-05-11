@@ -15,23 +15,6 @@ setup_args = dict(
     author='Matt',
     author_email='example@example.com'
 )
-class register(register_orig):
 
-    def _get_rc_file(self):
-        return os.path.join('.', '.pypirc')
-
-class upload(upload_orig):
-
-    def _get_rc_file(self):
-        return os.path.join('.', '.pypirc')
-
-setup(
-    name='myproj',
-
-    cmdclass={
-        'register': register,
-        'upload': upload,
-    }
-)
 if __name__ == '__main__':
     setup(**setup_args)
