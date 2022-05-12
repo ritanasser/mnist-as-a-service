@@ -87,6 +87,7 @@ pipeline {
         steps {
             sh '''
             cd package_demo
+            py get-pip.py
             pip install twine
             python setup.py sdist upload -r local
             python setup.py bdist_wheel upload -r local
