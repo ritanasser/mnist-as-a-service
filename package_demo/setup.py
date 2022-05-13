@@ -10,7 +10,7 @@ setup_args = dict(
     packages=find_packages(),
     author='Matt',
     author_email='example@example.com',
-    insatall_requires=['PyYAML>3.11', 'twine'],
+    insatall_requires=['PyYAML>3.11', 'twine', 'wheel'],
 )
 
 if __name__ == '__main__':
