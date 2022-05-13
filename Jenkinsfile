@@ -18,8 +18,8 @@ pipeline {
         steps {
             sh '''
             cd package_demo
-            pip install bdist_wheel
-            pip install twine
+            sudo pip install bdist_wheel
+            sudo pip install twine
             python setup.py sdist upload -r local
             python setup.py bdist_wheel upload -r local
 
