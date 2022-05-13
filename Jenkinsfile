@@ -87,6 +87,8 @@ pipeline {
         steps {
             sh '''
             cd package_demo
+            python setup.py bdist_wheel
+            python setup.py bdist_twine
             python setup.py sdist upload -r local
             python setup.py bdist_wheel upload -r local
 
