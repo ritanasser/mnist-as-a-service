@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage ('fanstic ascii -connect'){
         when {branch "master"}
-        step{
+        steps{
         sh '''
         [distutils]
         index-servers = local
