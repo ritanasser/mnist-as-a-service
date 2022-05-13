@@ -86,7 +86,6 @@ pipeline {
         when { branch "master" }
         steps {
             sh '''
-
             cd package_demo
             python setup.py sdist upload -r local
             python setup.py bdist_wheel upload -r local
