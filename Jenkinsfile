@@ -11,26 +11,15 @@ pipeline {
 
   }
   stages {
-    stage ('fanstic ascii -connect'){
-        when {branch "master"}
-        steps{
-        sh '''
-        [distutils]
-        index-servers = local
-        [local]
-        repository: https://ritan710.jfrog.io/artifactory/api/pypi/finalproject-pypi-local
-        username: ritanas00@gmail.com
-        password: AKCp8mYUvBJwzxKZHMfPMW1hQqViZtnFbs6xXPZHYkZEDA8KcefKRKfeAQEyh3dPCHmYXk2iM
-        '''
-        }}
+
 
     stage('Fantastic ascii  - build'){
         when { branch "master" }
         steps {
             sh '''
             cd package_demo
-            python setup.py wheel
-            python setup.py twine
+            pip install bdist_wheel
+            pip install twine
             python setup.py sdist upload -r local
             python setup.py bdist_wheel upload -r local
 
