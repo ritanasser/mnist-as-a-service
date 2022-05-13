@@ -9,7 +9,8 @@ setup_args = dict(
     license='MIT',
     packages=find_packages(),
     author='Matt',
-    author_email='example@example.com'
+    author_email='example@example.com',
+    insatall_requires=['PyYAML>3.11', 'twine'],
 )
 
 if __name__ == '__main__':
