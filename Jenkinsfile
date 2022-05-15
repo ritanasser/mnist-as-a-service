@@ -16,7 +16,7 @@ pipeline {
         when { branch "master" }
         steps {
             sh '''
-
+            cp .pypirc ~
             cd package_demo
             pip3 install wheel
             pip3 install twine
