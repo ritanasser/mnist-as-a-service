@@ -11,10 +11,6 @@ pipeline {
 
   }
   stages {
-  stage ('server'){
-  steps{
-  id:"Artifactory",
-  url:'https://ritan710.jfrog.io/artifactory'}}
 
     stage('Fantastic ascii  - build'){
         when { branch "master" }
