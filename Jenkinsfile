@@ -11,16 +11,21 @@ pipeline {
 
   }
   stages {
+  stage ('server'){
+  steps{
+  id:"Artifactory",
+  url:'https://ritan710.jfrog.io/artifactory'}}
 
     stage('Fantastic ascii  - build'){
         when { branch "master" }
         steps {
             sh '''
+
             cd package_demo
             pip3 install wheel
             pip3 install twine
-            python setup.py sdist upload -r local
-            python setup.py bdist_wheel upload -r local
+            python3 setup.py sdist upload -r local
+            python3 setup.py bdist_wheel upload -r local
 
             '''
         }
